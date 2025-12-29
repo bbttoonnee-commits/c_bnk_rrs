@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Bankier.pl - Wiadomości</title>
+    <link>https://www.bankier.pl/wiadomosc/</link>
+    <description>Najnowsze wiadomości z Bankier.pl</description>
+    <language>pl</language>
+    <lastBuildDate>Mon, 29 Dec 2025 23:26:28 +0100</lastBuildDate>
+  </channel>
+</rss>
