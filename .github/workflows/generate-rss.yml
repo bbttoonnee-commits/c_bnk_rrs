@@ -1,0 +1,33 @@
+name: Generate Bankier RSS Feed
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Co 6 godzin
+  workflow_dispatch:  # Możliwość ręcznego uruchomienia
+
+jobs:
+  generate-rss:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install requests beautifulsoup4 pytz
+        
+    - name: Generate RSS feed
+      run: python scraper.py
+      
+    - name: Commit and push if changed
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add rss.xml
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update RSS feed - $(TZ='Europe/Warsaw' date)" && git push)
